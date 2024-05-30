@@ -1,6 +1,7 @@
 import webbrowser
 import sys
 
+
 def open_urls(file_path, batch_size):
     """
     This script opens URLs from a text file in batches using the default web browser.
@@ -27,7 +28,7 @@ def open_urls(file_path, batch_size):
     opened_urls = 0
 
     while opened_urls < total_urls:
-        batch_urls = urls[opened_urls:opened_urls + batch_size]
+        batch_urls = urls[opened_urls : opened_urls + batch_size]
 
         for url in batch_urls:
             url = url.strip()
@@ -37,6 +38,7 @@ def open_urls(file_path, batch_size):
 
         if opened_urls < total_urls:
             input(f"Opened {opened_urls} URLs. Press Enter to open the next batch...")
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

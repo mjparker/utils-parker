@@ -21,12 +21,20 @@ def main():
     Args:
         directory: Directory containing the JSON files to combine.
     """
-    parser = argparse.ArgumentParser(description="Combine multiple JSON files into one.")
-    parser.add_argument("directory", type=str, help="Directory containing the JSON files to combine.")
+    parser = argparse.ArgumentParser(
+        description="Combine multiple JSON files into one."
+    )
+    parser.add_argument(
+        "directory", type=str, help="Directory containing the JSON files to combine."
+    )
     args = parser.parse_args()
 
     # Get all JSON files in the specified directory
-    json_files = [os.path.join(args.directory, f) for f in os.listdir(args.directory) if f.endswith(".json")]
+    json_files = [
+        os.path.join(args.directory, f)
+        for f in os.listdir(args.directory)
+        if f.endswith(".json")
+    ]
 
     combined_data = combine_json_files(json_files)
 
