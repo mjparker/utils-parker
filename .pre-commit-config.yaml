@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    # See https://github.com/pre-commit/pre-commit-hooks for more hooks.
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # See https://github.com/astral-sh/ruff-pre-commit for more hooks.
+    # Ruff version.
+    rev: v0.4.6
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format
+  - repo: local
+    hooks:
+      - id: ensure-venv
+        name: Ensure Virtual Environment
+        entry: utility-scripts/ensure_venv.sh
+        language: script
+        types: [ python ]
