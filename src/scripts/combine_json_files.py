@@ -19,9 +19,10 @@ def combine_json(files):
 def combine_json_files(directory_path):
     """
     Combine multiple JSON files into one file.
-    Args:
-        directory_path: Directory containing the JSON files to combine.
+
+    Usage: cli combine-json-files <directory_path>
     """
+
     # Get all JSON files in the specified directory
     json_files = [
         os.path.join(directory_path, f)

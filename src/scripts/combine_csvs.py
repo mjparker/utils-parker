@@ -9,7 +9,10 @@ def combine_csvs(directory_path):
     """
     Combine multiple CSV files into one. Assumes that all CSVs have the same columns.
     Accepts a directory path as an argument.
+
+    Usage: cli combine-csvs <directory_path>
     """
+
     # Get all files in the directory
     all_files = os.listdir(directory_path)
 

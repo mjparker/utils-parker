@@ -13,6 +13,8 @@ def open_urls(file_path, batch_size):
         file_path (str): The path to the text file containing URLs.
         batch_size (int): The number of URLs to open at once (optional, default=20).
 
+    Usage: cli open-urls <file_path> <batch_size>
+
     Note:
         - The text file should contain one URL per line.
         - The script will open the URLs in batches and wait for user input before opening the next batch.

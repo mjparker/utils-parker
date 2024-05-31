@@ -58,7 +58,12 @@ def save_formatted_history(formatted_history, output_file_path):
 @click.argument("input_file")
 @click.argument("speakers", nargs=-1)
 def format_slack_dm_history(input_file, speakers):
-    """Process chat history from an input file and format it."""
+    """
+    Process chat history from a txt file and format it.
+
+    Usage: cli format-slack-channel-history <input_file> <speaker1> <speaker2> ...
+    """
+
     output_file_path = f"{os.path.splitext(input_file)[0]}_formatted.txt"
 
     chat_history = parse_chat_history(input_file, speakers)

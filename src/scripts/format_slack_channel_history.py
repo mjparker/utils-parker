@@ -59,7 +59,12 @@ def save_formatted_history(formatted_history, output_file_path):
 @click.argument("input_file")
 @click.argument("speakers", nargs=-1)
 def format_slack_channel_history(input_file, speakers):
-    """Process chat history from an input file and format it."""
+    """
+    Process chat history from a txt file and format it.
+
+    Usage: cli format-slack-channel-history <input_file> <speaker1> <speaker2> ...
+    """
+
     if len(speakers) < 2:
         click.echo("Please specify at least two speakers.")
         sys.exit(1)
