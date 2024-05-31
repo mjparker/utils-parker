@@ -16,7 +16,7 @@ cli.add_command(combine_csvs, name="combine-csvs")
 cli.add_command(combine_json_files, name="combine-json-files")
 cli.add_command(format_slack_dm_history, name="format-slack-dm")
 cli.add_command(format_slack_channel_history, name="format-slack-channel")
-cli.add_commmand(open_urls, name="open-urls")
+cli.add_command(open_urls, name="open-urls")
 
 if __name__ == "__main__":
     cli()
