@@ -1,20 +1,17 @@
 import webbrowser
-import sys
+import click
 
 
+@click.command()
+@click.argument("file_path")
+@click.argument("batch_size", default=20, type=int, required=False)
 def open_urls(file_path, batch_size):
     """
-    This script opens URLs from a text file in batches using the default web browser.
-
-    Usage:
-        python script.py <file_path> [batch_size]
+    Open URLs from a text file in batches using the default web browser.
 
     Arguments:
-        file_path (str): The path to the text file containing URLs (required).
+        file_path (str): The path to the text file containing URLs.
         batch_size (int): The number of URLs to open at once (optional, default=20).
-
-    Example:
-        python script.py urls.txt 15
 
     Note:
         - The text file should contain one URL per line.
@@ -41,11 +38,4 @@ def open_urls(file_path, batch_size):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Please provide the file path as a command line argument.")
-        sys.exit(1)
-
-    file_path = sys.argv[1]
-    batch_size = int(sys.argv[2]) if len(sys.argv) > 2 else 20
-
-    open_urls(file_path, batch_size)
+    open_urls()
