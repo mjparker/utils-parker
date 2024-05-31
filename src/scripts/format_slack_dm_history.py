@@ -1,6 +1,6 @@
 import re
 import os
-import click
+import asyncclick as click
 
 
 def parse_chat_history(file_path, speakers):
@@ -54,24 +54,21 @@ def save_formatted_history(formatted_history, output_file_path):
         file.write(formatted_history)
 
 
-@click.command()
-@click.argument("input_file")
-@click.argument("speakers", nargs=-1)
-def format_slack_dm_history(input_file, speakers):
-    """
-    Process chat history from a txt file and format it.
+def setup_cmd(utils):
+    @utils.command()
+    @click.argument("input_file")
+    @click.argument("speakers", nargs=-1)
+    def format_slack_dm_history(input_file, speakers):
+        """
+        Process chat history from a txt file and format it.
 
-    Usage: cli format-slack-channel-history <input_file> <speaker1> <speaker2> ...
-    """
+        Usage: utils format-slack-channel-history <input_file> <speaker1> <speaker2> ...
+        """
 
-    output_file_path = f"{os.path.splitext(input_file)[0]}_formatted.txt"
+        output_file_path = f"{os.path.splitext(input_file)[0]}_formatted.txt"
 
-    chat_history = parse_chat_history(input_file, speakers)
-    formatted_history = format_chat_history(chat_history)
-    save_formatted_history(formatted_history, output_file_path)
+        chat_history = parse_chat_history(input_file, speakers)
+        formatted_history = format_chat_history(chat_history)
+        save_formatted_history(formatted_history, output_file_path)
 
-    print(f"Formatted chat history saved to {output_file_path}")
-
-
-if __name__ == "__main__":
-    format_slack_dm_history()
+        print(f"Formatted chat history saved to {output_file_path}")

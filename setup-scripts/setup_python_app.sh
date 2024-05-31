@@ -17,16 +17,14 @@ pip install black
 pip install pip-tools
 pip install ruff
 
-req_installed=0
 # install project requirements.txt if it exists
-if [ $req_installed = "0" ] && [ -f "requirements.txt" ]; then
+if [ -f "requirements.txt" ]; then
     pip install -r requirements.txt
-    req_installed=1
 fi
 
-if [ $req_installed = "0" ] && [ -f "setup.py" ]; then
+# install the project in editable mode
+if [ -f "setup.py" ]; then
     pip install -e .
-    req_installed=1
 fi
 
 if [ -f ".pre-commit-config.yaml" ]; then
