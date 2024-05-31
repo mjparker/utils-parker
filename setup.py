@@ -11,8 +11,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "yourscript = yourscript:cli",
-            "format-slack-dm = format_slack_dm_history:main",
+            "cli = cli:cli",
         ],
     },
 )

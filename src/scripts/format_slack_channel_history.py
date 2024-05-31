@@ -1,6 +1,7 @@
 import re
+import sys
 import os
-import asyncclick as click
+import click
 
 
 def parse_chat_history(file_path, speakers):
@@ -59,13 +60,17 @@ def save_formatted_history(formatted_history, output_file_path):
 @click.argument("speakers", nargs=-1)
 def main(input_file, speakers):
     """Process chat history from an input file and format it."""
+    if len(speakers) < 2:
+        click.echo("Please specify at least two speakers.")
+        sys.exit(1)
+
     output_file_path = f"{os.path.splitext(input_file)[0]}_formatted.txt"
 
     chat_history = parse_chat_history(input_file, speakers)
     formatted_history = format_chat_history(chat_history)
     save_formatted_history(formatted_history, output_file_path)
 
-    print(f"Formatted chat history saved to {output_file_path}")
+    click.echo(f"Formatted chat history saved to {output_file_path}")
 
 
 if __name__ == "__main__":
