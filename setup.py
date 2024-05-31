@@ -11,7 +11,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "cli = cli:cli",
+            "utils = cli:utils",
         ],
     },
 )
