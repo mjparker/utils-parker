@@ -1,10 +1,9 @@
-# pylint: disable=invalid-name
 import json
 import os
-import argparse
+import click
 
 
-def combine_json_files(files):
+def combine_json(files):
     combined_data = []
 
     for file in files:
@@ -15,36 +14,35 @@ def combine_json_files(files):
     return combined_data
 
 
-def main():
+@click.command()
+@click.argument("directory_path")
+def combine_json_files(directory_path):
     """
     Combine multiple JSON files into one file.
     Args:
-        directory: Directory containing the JSON files to combine.
+        directory_path: Directory containing the JSON files to combine.
     """
-    parser = argparse.ArgumentParser(
-        description="Combine multiple JSON files into one."
-    )
-    parser.add_argument(
-        "directory", type=str, help="Directory containing the JSON files to combine."
-    )
-    args = parser.parse_args()
-
     # Get all JSON files in the specified directory
     json_files = [
-        os.path.join(args.directory, f)
-        for f in os.listdir(args.directory)
+        os.path.join(directory_path, f)
+        for f in os.listdir(directory_path)
         if f.endswith(".json")
     ]
 
-    combined_data = combine_json_files(json_files)
+    # Check if any JSON files are found
+    if not json_files:
+        click.echo("No JSON files found in the provided directory.")
+        raise click.Abort()
+
+    combined_data = combine_json(json_files)
 
     # Write the combined data to a new JSON file
-    output_file = os.path.join(args.directory, "combined.json")
+    output_file = os.path.join(directory_path, "combined.json")
     with open(output_file, "w", encoding="utf8") as f:
         json.dump(combined_data, f, indent=4)
 
-    print(f"Combined {len(json_files)} JSON files into 'combined.json'")
+    click.echo(f"Combined {len(json_files)} JSON files into 'combined.json'")
 
 
 if __name__ == "__main__":
-    main()
+    combine_json_files()
