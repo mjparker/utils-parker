@@ -1,6 +1,6 @@
 import json
 import os
-import click
+import asyncclick as click
 
 
 def combine_json(files):
@@ -14,36 +14,33 @@ def combine_json(files):
     return combined_data
 
 
-@click.command()
-@click.argument("directory_path")
-def combine_json_files(directory_path):
-    """
-    Combine multiple JSON files into one file.
+def setup_cmd(utils):
+    @utils.command()
+    @click.argument("directory_path")
+    def combine_json_files(directory_path):
+        """
+        Combine multiple JSON files into one file.
 
-    Usage: cli combine-json-files <directory_path>
-    """
+        Usage: utils combine-json-files <directory_path>
+        """
 
-    # Get all JSON files in the specified directory
-    json_files = [
-        os.path.join(directory_path, f)
-        for f in os.listdir(directory_path)
-        if f.endswith(".json")
-    ]
+        # Get all JSON files in the specified directory
+        json_files = [
+            os.path.join(directory_path, f)
+            for f in os.listdir(directory_path)
+            if f.endswith(".json")
+        ]
 
-    # Check if any JSON files are found
-    if not json_files:
-        click.echo("No JSON files found in the provided directory.")
-        raise click.Abort()
+        # Check if any JSON files are found
+        if not json_files:
+            click.echo("No JSON files found in the provided directory.")
+            raise click.Abort()
 
-    combined_data = combine_json(json_files)
+        combined_data = combine_json(json_files)
 
-    # Write the combined data to a new JSON file
-    output_file = os.path.join(directory_path, "combined.json")
-    with open(output_file, "w", encoding="utf8") as f:
-        json.dump(combined_data, f, indent=4)
+        # Write the combined data to a new JSON file
+        output_file = os.path.join(directory_path, "combined.json")
+        with open(output_file, "w", encoding="utf8") as f:
+            json.dump(combined_data, f, indent=4)
 
-    click.echo(f"Combined {len(json_files)} JSON files into 'combined.json'")
-
-
-if __name__ == "__main__":
-    combine_json_files()
+        click.echo(f"Combined {len(json_files)} JSON files into 'combined.json'")
