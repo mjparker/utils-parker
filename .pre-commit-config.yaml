@@ -20,6 +20,6 @@ repos:
     hooks:
       - id: ensure-venv
         name: Ensure Virtual Environment
-        entry: utility-scripts/ensure_venv.sh
+        entry: setup-scripts/ensure_venv.sh
         language: script
         types: [ python ]

@@ -1,2 +1,2 @@
 # setup the project for this repo
-source utility-scripts/setup_python_app.sh
+source setup-scripts/setup_python_app.sh
