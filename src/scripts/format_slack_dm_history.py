@@ -57,7 +57,7 @@ def save_formatted_history(formatted_history, output_file_path):
 @click.command()
 @click.argument("input_file")
 @click.argument("speakers", nargs=-1)
-def main(input_file, speakers):
+def format_slack_dm_history(input_file, speakers):
     """Process chat history from an input file and format it."""
     output_file_path = f"{os.path.splitext(input_file)[0]}_formatted.txt"
 
@@ -69,4 +69,4 @@ def main(input_file, speakers):
 
 
 if __name__ == "__main__":
-    main()
+    format_slack_dm_history()
