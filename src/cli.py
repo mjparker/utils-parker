@@ -4,6 +4,7 @@ import asyncclick as click
 
 from scripts import combine_csvs
 from scripts import combine_json_files
+from scripts import format_csv_to_excel
 from scripts import format_slack_dm_history
 from scripts import format_slack_channel_history
 from scripts import open_urls
@@ -17,6 +18,7 @@ def utils():
 
 combine_csvs.setup_cmd(utils)
 combine_json_files.setup_cmd(utils)
+format_csv_to_excel.setup_cmd(utils)
 format_slack_dm_history.setup_cmd(utils)
 format_slack_channel_history.setup_cmd(utils)
 open_urls.setup_cmd(utils)
